@@ -299,6 +299,7 @@ MonoBehaviour:
   MoveRight: 0
   SpinLeft: 0
   SpinRight: 0
+  TankCameraHolder: {fileID: 2555511185579963032}
   SpinTankValue: {x: 0, y: 0, z: 0}
 --- !u!114 &1781619971852524170
 MonoBehaviour:

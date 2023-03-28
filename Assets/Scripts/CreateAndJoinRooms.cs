@@ -12,13 +12,12 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public TMPro.TMP_InputField CreateInput;
     public TMPro.TMP_InputField JoinInput;
-   // public string LevelName;
-    public Object SceneToLoad;
+    //  public Object SceneToLoad;
+    // public string SceneNameToLoad = "";
 
-    void Start()
-    {
-        
-    }
+    public string[] SceneNameToLoad;
+    public int LoadIndex = 0;
+
 
 
     public void CreateRoom()
@@ -35,13 +34,12 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         //   base.OnJoinedRoom();
-        //  PhotonNetwork.LoadLevel("MultiplayerGameScene");
-        //  PhotonNetwork.LoadLevel(LevelName);
-          PhotonNetwork.LoadLevel(SceneToLoad.name);
-
-
+        PhotonNetwork.LoadLevel(SceneNameToLoad[LoadIndex]);
     }
 
-
+    public void CloseApp()
+    {
+        Application.Quit();
+    }
 
 }

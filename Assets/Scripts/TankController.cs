@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class TankController : MonoBehaviour
 {
@@ -15,10 +16,11 @@ public class TankController : MonoBehaviour
     public bool MoveRight;
     public bool SpinLeft;
     public bool SpinRight;
+    public GameObject TankCameraHolder;
 
     private Rigidbody rb;
     public Vector3 SpinTankValue;
-
+    private PhotonView view;
 
 
     void Start()
@@ -27,6 +29,12 @@ public class TankController : MonoBehaviour
         ThisTankDriveSpeed = MyGameManager.Instance.TankDriveSpeed;
         ThisTankSpinSpeed = MyGameManager.Instance.TankSpinSpeed;
         rb = GetComponent<Rigidbody>();
+        view = GetComponent<PhotonView>();
+
+        if (!view.IsMine)
+        {
+            TankCameraHolder.SetActive(false);
+        }
     }
 
    
@@ -34,6 +42,10 @@ public class TankController : MonoBehaviour
 
     private void Update()
     {
+        if (!view.IsMine)
+        {
+            return;
+        }
 
         if (MoveRight)
         {
@@ -62,6 +74,12 @@ public class TankController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!view.IsMine)
+        {
+            return;
+        }
+
+
         if (SpinLeft)
         {
             SpinTankValue = transform.forward * ThisTankSpinSpeed * -1;
