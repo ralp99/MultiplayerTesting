@@ -16,7 +16,7 @@ public class TankController : MonoBehaviour
     public bool SpinLeft;
     public bool SpinRight;
 
-    Rigidbody rb;
+    private Rigidbody rb;
     public Vector3 SpinTankValue;
 
 
@@ -31,45 +31,34 @@ public class TankController : MonoBehaviour
 
    
 
-    void Update()
+
+    private void Update()
     {
 
-        float newXpos = TankTransform.localPosition.x;
-        float newYpos = TankTransform.localPosition.y;
-        float newZpos = TankTransform.localPosition.z;
-
-        float spinAngleX = TankTransform.rotation.x;
-        float spinAngleY = TankTransform.rotation.y;
-        float spinAngleZ = TankTransform.rotation.z;
-
-
-        if (MoveBackward)
+        if (MoveRight)
         {
-            newZpos =
-             TankTransform.localPosition.z + ThisTankDriveSpeed;
-        }
-
-        if (MoveForward)
-        {
-            newZpos =
-            TankTransform.localPosition.z + ThisTankDriveSpeed * -1;
+            TankTransform.position -= ThisTankDriveSpeed * transform.right;
         }
 
         if (MoveLeft)
         {
-            newXpos =
-          TankTransform.localPosition.x + ThisTankDriveSpeed;
+            TankTransform.position += ThisTankDriveSpeed *  transform.right;
         }
 
-        if (MoveRight)
+        if (MoveBackward)
         {
-            newXpos =
-       TankTransform.localPosition.x + ThisTankDriveSpeed * -1;
+            TankTransform.position -= ThisTankDriveSpeed * transform.up;
         }
 
-        TankTransform.localPosition = new Vector3(newXpos, newYpos, newZpos);
-
+        if (MoveForward)
+        {
+            TankTransform.position += ThisTankDriveSpeed * transform.up;
+        }
     }
+
+
+
+
 
     private void FixedUpdate()
     {
