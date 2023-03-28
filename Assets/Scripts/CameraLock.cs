@@ -118,7 +118,10 @@ public class CameraLock : MonoBehaviour
 
             if (LockRotZ)
             {
-                newZrot = FollowingTransform.eulerAngles.z + offsetRotZ;
+                //   newZrot = FollowingTransform.eulerAngles.z + offsetRotZ;
+                newZrot = FollowingTransform.localEulerAngles.z + offsetRotZ;
+
+
             }
         }
 

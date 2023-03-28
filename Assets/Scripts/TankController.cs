@@ -5,8 +5,7 @@ using UnityEngine;
 public class TankController : MonoBehaviour
 {
     Transform TankTransform;
-    public enum TankMovingDirection { NA, Forward, Backward, Left, Right };
-    public TankMovingDirection tankMovingDirection;
+    
     public float ThisTankDriveSpeed;
     public float ThisTankSpinSpeed;
 
@@ -30,83 +29,45 @@ public class TankController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void fUpdate()
-    {
-       // return;
-        
-        float newXpos = TankTransform.position.x;
-        float newYpos = TankTransform.position.y;
-        float newZpos = TankTransform.position.z;
-
-
-        switch (tankMovingDirection)
-        {
-            case TankMovingDirection.NA:
-                break;
-            case TankMovingDirection.Forward:
-                newZpos =
-             TankTransform.position.z + ThisTankDriveSpeed*-1;
-
-                break;
-            case TankMovingDirection.Backward:
-                newZpos =
-         TankTransform.position.z + ThisTankDriveSpeed;
-                break;
-            case TankMovingDirection.Left:
-                newXpos =
-               TankTransform.position.x + ThisTankDriveSpeed;
-                break;
-            case TankMovingDirection.Right:
-                newXpos =
-              TankTransform.position.x + ThisTankDriveSpeed * -1;
-                break;
-            default:
-                break;
-        }
-
-        //TankTransform.localPosition = new Vector3(newXpos, newYpos, newZpos);
-        TankTransform.position = new Vector3(newXpos, newYpos, newZpos);
-
-
-    }
+   
 
     void Update()
     {
 
-        float newXpos = TankTransform.position.x;
-        float newYpos = TankTransform.position.y;
-        float newZpos = TankTransform.position.z;
+        float newXpos = TankTransform.localPosition.x;
+        float newYpos = TankTransform.localPosition.y;
+        float newZpos = TankTransform.localPosition.z;
 
         float spinAngleX = TankTransform.rotation.x;
         float spinAngleY = TankTransform.rotation.y;
         float spinAngleZ = TankTransform.rotation.z;
 
+
         if (MoveBackward)
         {
             newZpos =
-             TankTransform.position.z + ThisTankDriveSpeed;
+             TankTransform.localPosition.z + ThisTankDriveSpeed;
         }
 
         if (MoveForward)
         {
             newZpos =
-            TankTransform.position.z + ThisTankDriveSpeed * -1;
+            TankTransform.localPosition.z + ThisTankDriveSpeed * -1;
         }
 
         if (MoveLeft)
         {
             newXpos =
-          TankTransform.position.x + ThisTankDriveSpeed;
+          TankTransform.localPosition.x + ThisTankDriveSpeed;
         }
 
         if (MoveRight)
         {
             newXpos =
-       TankTransform.position.x + ThisTankDriveSpeed * -1;
+       TankTransform.localPosition.x + ThisTankDriveSpeed * -1;
         }
 
-        TankTransform.position = new Vector3(newXpos, newYpos, newZpos);
+        TankTransform.localPosition = new Vector3(newXpos, newYpos, newZpos);
 
     }
 
@@ -115,17 +76,13 @@ public class TankController : MonoBehaviour
         if (SpinLeft)
         {
             SpinTankValue = transform.forward * ThisTankSpinSpeed * -1;
-            //  rb.AddTorque(transform.forward * ThisTankSpinSpeed * -1);
             rb.AddTorque(SpinTankValue);
-
         }
 
         if (SpinRight)
         {
             SpinTankValue = transform.forward * ThisTankSpinSpeed;
-            //  rb.AddTorque(transform.forward * ThisTankSpinSpeed);
             rb.AddTorque(SpinTankValue);
-
         }
 
     }

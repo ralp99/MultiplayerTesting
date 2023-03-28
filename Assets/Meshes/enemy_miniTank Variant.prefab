@@ -134,7 +134,7 @@ MonoBehaviour:
   LockPosY: 1
   LockPosZ: 1
   LockRotX: 0
-  LockRotY: 0
+  LockRotY: 1
   LockRotZ: 1
   offsetPosX: 0
   offsetPosY: 0
@@ -144,7 +144,8 @@ MonoBehaviour:
   offsetRotZ: 0
   CaptureInitPosOffset: 1
   CaptureInitRotOffset: 1
-  CaptureSpinTankValueForRot: 1
+  CaptureSpinTankValueForRot: 0
+  tankControllerSpinValues: {x: 0, y: 0, z: 0}
 --- !u!1001 &8614561297979839226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -300,3 +301,4 @@ MonoBehaviour:
   SpinLeft: 0
   SpinRight: 0
   SpinTankValue: {x: 0, y: 0, z: 0}
+  EulerVals: {x: 0, y: 0, z: 0}
