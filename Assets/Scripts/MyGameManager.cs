@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MyGameManager : MonoBehaviour
 {
@@ -25,18 +26,16 @@ public class MyGameManager : MonoBehaviour
         GameBegin();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
 
     void GameBegin()
     {
         Transform TankASpawnPoint = TankSpawnPoints[0];
 
-        GameObject TankAObject = Instantiate(TankModel, TankASpawnPoint);
+        //   GameObject TankAObject = PhotonNetwork.Instantiate(TankModel, TankASpawnPoint) as gameObject
+        GameObject TankAObject = PhotonNetwork.Instantiate(TankModel.name, TankASpawnPoint.transform.position, Quaternion.identity);
+
         TankA = TankAObject.GetComponent<TankController>();
     }
 

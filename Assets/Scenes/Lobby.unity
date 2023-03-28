@@ -1614,6 +1614,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CreateInput: {fileID: 1241180040}
   JoinInput: {fileID: 1801041606}
+  LevelName: MultiplayerGameScene-tank
+  SceneToLoad: {fileID: 102900000, guid: 46354cd1d261afb49a11c98e12499b20, type: 3}
 --- !u!1 &1739266175
 GameObject:
   m_ObjectHideFlags: 0
